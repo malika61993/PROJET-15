@@ -136,12 +136,31 @@ body {
     margin-top: 2rem;
 }
 
-.skills ul {
+.skills ul, .languages ul {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1rem;
     margin-top: 1rem;
+}
+
+.languages {
+    margin-top: 2rem;
+}
+
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.skills-tags span {
+    background-color: #f0f0f0;
+    color: #2c3e50;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
 }
 
 .skills li {
