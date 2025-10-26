@@ -38,6 +38,75 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Contact Form Validation
+function validateForm(event) {
+    event.preventDefault();
+    let isValid = true;
+    
+    // Reset error messages
+    document.querySelectorAll('.error-message').forEach(error => {
+        error.style.display = 'none';
+    });
+
+    // Validate Name
+    const name = document.getElementById('name');
+    if (name.value.trim().length < 2) {
+        showError(name, 'Name must be at least 2 characters long');
+        isValid = false;
+    }
+
+    // Validate Email
+    const email = document.getElementById('email');
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email.value)) {
+        showError(email, 'Please enter a valid email address');
+        isValid = false;
+    }
+
+    // Validate Subject
+    const subject = document.getElementById('subject');
+    if (subject.value.trim().length < 3) {
+        showError(subject, 'Subject must be at least 3 characters long');
+        isValid = false;
+    }
+
+    // Validate Message
+    const message = document.getElementById('message');
+    if (message.value.trim().length < 10) {
+        showError(message, 'Message must be at least 10 characters long');
+        isValid = false;
+    }
+
+    if (isValid) {
+        // Here you would typically send the form data to a server
+        alert('Thank you for your message! I will get back to you within 24 hours.');
+        event.target.reset();
+    }
+
+    return false;
+}
+
+function showError(input, message) {
+    const errorElement = input.nextElementSibling;
+    errorElement.textContent = message;
+    errorElement.style.display = 'block';
+}
+
+// Character counter for message
+document.getElementById('message').addEventListener('input', function(e) {
+    const maxLength = 500;
+    const currentLength = e.target.value.length;
+    const counterElement = e.target.parentElement.querySelector('.character-count');
+    counterElement.textContent = `${currentLength}/${maxLength} characters`;
+    
+    if (currentLength > maxLength) {
+        e.target.value = e.target.value.slice(0, maxLength);
+        counterElement.style.color = '#e74c3c';
+    } else {
+        counterElement.style.color = '#666';
+    }
+});
+
 // Add animation to timeline items
 const observerOptions = {
     threshold: 0.5
